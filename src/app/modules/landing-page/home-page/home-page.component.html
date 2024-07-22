@@ -1,0 +1,35 @@
+
+<div class="container">
+  <div class="left">
+    <div class="Sector">
+      <h3>Company Sector</h3>
+      <div class="tags">
+        <nz-tag
+          *ngFor="let sector of companySectors"
+          [nzChecked]="sector.selected"
+          (nzCheckedChange)="onTagChange(sector, $event)"
+          [nzMode]="'checkable'"
+        >
+          {{ sector.name }}
+        </nz-tag>
+      </div>
+    </div>
+    <div style="display: flex;
+    justify-content: space-around;">
+      <button class="btn-secondary" (click)="clearAllFilters()">
+        clear all
+      </button>
+      <button class="btn-primary" (click)="showMatches()">
+        show Matches
+      </button>
+    </div>
+
+
+  </div>
+  <div class="right">
+    @for (item of [1,2,3,4,5,6,7]; track $index) {
+      <app-card></app-card>
+    }
+  </div>
+</div>
+

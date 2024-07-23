@@ -1,0 +1,94 @@
+<!-- save-tender-modal.component.html -->
+<form nz-form [formGroup]="tenderForm" (ngSubmit)="saveTender()">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzRequired>Title</nz-form-label>
+    <nz-form-control [nzSpan]="14" nzErrorTip="Title is required">
+      <input nz-input formControlName="title" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzRequired>Description</nz-form-label>
+    <nz-form-control [nzSpan]="14" nzErrorTip="Description is required">
+      <textarea nz-input formControlName="description"></textarea>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzRequired>Budget Type</nz-form-label>
+    <nz-form-control [nzSpan]="14" nzErrorTip="Budget type is required">
+      <nz-select formControlName="budgetType">
+        <nz-option nzValue="OPERATIONAL" nzLabel="OPERATIONAL"></nz-option>
+        <nz-option nzValue="FUNCTIONAL" nzLabel="FUNCTIONAL"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzRequired>Operation</nz-form-label>
+    <nz-form-control [nzSpan]="14" nzErrorTip="Operation is required">
+      <input nz-input formControlName="operation" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzRequired>Situation</nz-form-label>
+    <nz-form-control [nzSpan]="14" nzErrorTip="Situation is required">
+      <input nz-input formControlName="situation" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzRequired>Prestation</nz-form-label>
+    <nz-form-control [nzSpan]="14" nzErrorTip="Prestation is required">
+      <input nz-input formControlName="prestation" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzRequired>Caution Percentage</nz-form-label>
+    <nz-form-control [nzSpan]="14" nzErrorTip="Caution percentage is required and must be between 0 and 100">
+      <input nz-input type="number" formControlName="cautionPercentage" min="0" max="100" step="0.01" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzRequired>Estimated Amount</nz-form-label>
+    <nz-form-control [nzSpan]="14" nzErrorTip="Estimated amount is required and must be greater than 0">
+      <input nz-input type="number" formControlName="estimatedAmount" min="0" step="0.01" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzRequired>Image</nz-form-label>
+    <nz-form-control [nzSpan]="14" nzErrorTip="Image is required">
+      <input type="file" (change)="onFileSelected($event)" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzRequired>Location</nz-form-label>
+    <nz-form-control [nzSpan]="14" nzErrorTip="Location is required">
+      <input nz-input formControlName="location" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzRequired>Sector</nz-form-label>
+    <nz-form-control [nzSpan]="14" nzErrorTip="Sector is required">
+      <input nz-input formControlName="sector" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control [nzOffset]="6" [nzSpan]="14">
+      <button nz-button nzType="primary" [disabled]="!tenderForm.valid" style="    background: #001529;
+      color: white;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 10px;">Save Tender</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

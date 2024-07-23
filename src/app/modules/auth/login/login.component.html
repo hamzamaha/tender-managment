@@ -23,12 +23,12 @@
         </label>
       </div>
     </div>
-    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
+    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" (click)="submitLoginForm()">Log in</button>
     Or
     <a (click)="toggleForm()">register now!</a>
   </form>
 
-  <form *ngIf="isRegistering" nz-form [formGroup]="validateRegisterForm" class="register-form" (ngSubmit)="submitRegisterForm()" style="width: 300px;">
+  <!-- <form *ngIf="isRegistering" nz-form [formGroup]="validateRegisterForm" class="register-form" (ngSubmit)="submitRegisterForm()" style="width: 300px;">
     <nz-form-item>
       <nz-form-control nzErrorTip="Please input your full name!">
         <nz-input-group nzPrefixIcon="user">
@@ -74,5 +74,118 @@
     <button nz-button class="register-form-button" [nzType]="'primary'">Register</button>
     Or
     <a (click)="toggleForm()">log in now!</a>
+  </form> -->
+  <form *ngIf="isRegistering" nz-form [formGroup]="validateRegisterForm" class="register-form" (ngSubmit)="submitRegisterForm()" style="width: 300px;">
+
+    <!-- Radio buttons for user type selection -->
+    <nz-form-item>
+      <nz-form-control>
+        <nz-radio-group formControlName="userType">
+          <label nz-radio nzValue="User" (click)="changeUserType('User')">User</label>
+          <label nz-radio nzValue="DTI" (click)="changeUserType('DTI')">DTI</label>
+          <label nz-radio nzValue="CDP" (click)="changeUserType('CDP')">CDP</label>
+        </nz-radio-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <!-- Common fields for all user types -->
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your full name!">
+        <nz-input-group nzPrefixIcon="user">
+          <input type="text" nz-input formControlName="fullName" placeholder="Full Name" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your email!">
+        <nz-input-group nzPrefixIcon="mail">
+          <input type="email" nz-input formControlName="email" placeholder="Email" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your phone number!">
+        <nz-input-group nzPrefixIcon="phone">
+          <input type="text" nz-input formControlName="phoneNumber" placeholder="Phone Number" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your password!">
+        <nz-input-group nzPrefixIcon="lock">
+          <input type="password" nz-input formControlName="password" placeholder="Password" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please confirm your password!">
+        <nz-input-group nzPrefixIcon="lock">
+          <input type="password" nz-input formControlName="confirmPassword" placeholder="Confirm Password" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please select an avatar!">
+        <nz-input-group nzPrefixIcon="smile">
+          <input type="text" nz-input formControlName="avatar" placeholder="Avatar" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <!-- DTI specific fields -->
+    <ng-container *ngIf="validateRegisterForm.get('userType')?.value === 'DTI'">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input company name!">
+          <nz-input-group nzPrefixIcon="bank">
+            <input type="text" nz-input formControlName="companyName" placeholder="Company Name" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input company address!">
+          <nz-input-group nzPrefixIcon="home">
+            <input type="text" nz-input formControlName="companyAddress" placeholder="Company Address" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input company role!">
+          <nz-input-group nzPrefixIcon="team">
+            <input type="text" nz-input formControlName="companyRole" placeholder="Company Role" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please select company type!">
+          <nz-select formControlName="companyType" nzPlaceHolder="Company Type">
+            <nz-option nzValue="Private" nzLabel="Private"></nz-option>
+            <nz-option nzValue="Public" nzLabel="Public"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input company size!">
+          <nz-input-group nzPrefixIcon="usergroup-add">
+            <input type="number" nz-input formControlName="companySize" placeholder="Company Size" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </ng-container>
+
+    <!-- CDP specific fields -->
+    <ng-container *ngIf="validateRegisterForm.get('userType')?.value === 'CDP'">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input company ID!">
+          <nz-input-group nzPrefixIcon="number">
+            <input type="text" nz-input formControlName="companyId" placeholder="Company ID" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </ng-container>
+
+    <button nz-button class="register-form-button" [nzType]="'primary'">Register</button>
+    Or
+    <a (click)="toggleForm()">log in now!</a>
   </form>
+
 </div>

@@ -1,0 +1,50 @@
+<!-- tender.component.html -->
+<div class="tender-container">
+
+  <div style="    display: flex;
+  justify-content: flex-end;
+  padding: 10px;">
+    <button nz-button nzType="primary" (click)="showSaveTenderModal()" style="    background: #001529;
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;">Add Tender</button>
+  </div>
+
+
+  <nz-table
+    #tenderTable
+    [nzData]="tenders"
+    [nzTotal]="total"
+    [nzPageSize]="pageSize"
+    [nzPageIndex]="pageIndex"
+    [nzLoading]="loading"
+    (nzQueryParams)="onQueryParamsChange($event)"
+    [nzFrontPagination]="false"
+    [nzShowSizeChanger]="true"
+    [nzShowQuickJumper]="true"
+  >
+    <thead>
+      <tr>
+        <th nzColumnKey="title" [nzSortFn]="true">Title</th>
+        <th nzColumnKey="description" [nzSortFn]="true">Description</th>
+        <th nzColumnKey="budgetType" [nzSortFn]="true">Budget Type</th>
+        <th nzColumnKey="estimatedAmount" [nzSortFn]="true">Estimated Amount</th>
+        <th nzColumnKey="location" [nzSortFn]="true">Location</th>
+        <th nzColumnKey="sector" [nzSortFn]="true">Sector</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tender of tenderTable.data">
+        <td>{{ tender.title }}</td>
+        <td>{{ tender.description }}</td>
+        <td>{{ tender.budgetType }}</td>
+        <td>{{ tender.estimatedAmount }}</td>
+        <td>{{ tender.location }}</td>
+        <td>{{ tender.sector }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

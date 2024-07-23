@@ -1,0 +1,48 @@
+<!-- tender-list.component.html -->
+<nz-table
+  #tenderTable
+  [nzData]="tenders"
+  [nzLoading]="loading"
+  [nzTotal]="total"
+  [nzPageSize]="pageSize"
+  [nzPageIndex]="pageIndex"
+  (nzQueryParams)="onQueryParamsChange($event)"
+  nzShowSizeChanger
+  nzShowQuickJumper>
+  <thead>
+    <tr>
+      <th nzColumnKey="id" [nzSortFn]="true">ID</th>
+      <th nzColumnKey="title" [nzSortFn]="true">Title</th>
+      <th nzColumnKey="status" [nzSortFn]="true">Status</th>
+      <th nzColumnKey="createdAt" [nzSortFn]="true">Created At</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tender of tenderTable.data">
+      <td>{{ tender.id }}</td>
+      <td>{{ tender.title }}</td>
+      <td>{{ tender.status }}</td>
+      <td>{{ tender.createdAt | date }}</td>
+      <td>
+        <button nz-button nzType="primary" (click)="updateStatus(tender, 'ACCEPTED', acceptTpl)" [disabled]="tender.status === 'ACCEPTED'">
+          Approve
+        </button>
+        <button nz-button nzType="danger" (click)="updateStatus(tender, 'REJECTED', rejectTpl)" [disabled]="tender.status === 'REJECTED'">
+          Reject
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+<ng-template #rejectTpl>
+  <textarea nz-input
+    [(ngModel)]="rejectComment"
+    placeholder="Enter rejection reason">
+  </textarea>
+</ng-template>
+
+<ng-template #acceptTpl>
+  <p>Are you sure you want to accept this tender?</p>
+</ng-template>

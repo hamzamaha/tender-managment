@@ -26,8 +26,8 @@
 
 
   </div>
-  <div class="right">
-    @for (item of [1,2,3,4,5,6,7]; track $index) {
+  <div class="right" (scroll)="onScroll($event)">
+    @for (tender  of tenders; track $index) {
       <app-card></app-card>
     }
   </div>

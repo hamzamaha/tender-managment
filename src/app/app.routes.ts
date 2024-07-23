@@ -5,6 +5,9 @@ import { LayoutComponent } from './core/layout/layout.component';
 import { MyOffresComponent } from './modules/landing-page/my-offres/my-offres.component';
 import { DashbordLayoutComponent } from './core/dashbord-layout/dashbord-layout.component';
 import { CardComponent } from './shared/components/card/card.component';
+import { UserLoginComponent } from './modules/auth/user-login/user-login.component';
+import { OffersComponent } from './modules/back-office/offers/offers.component';
+import { DtiViewComponent } from './modules/back-office/dti-view/dti-view.component';
 
 export const routes: Routes = [
   {
@@ -26,10 +29,15 @@ export const routes: Routes = [
 
   },
   {
+    path: 'auth',
+    component:UserLoginComponent
+  },
+  {
     path: 'dashboard',
     component: DashbordLayoutComponent,
     children: [
-      { path: '', component: CardComponent ,},
+      { path: '', component: OffersComponent ,},
+      { path: 'dti', component: DtiViewComponent ,},
       // { path: 'offers', component: MyOffresComponent ,},
     ]
 

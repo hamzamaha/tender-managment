@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterOutlet, RouterLink } from '@angular/router';
+import { RouterOutlet, RouterLink, Router } from '@angular/router';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { UserService } from '../../shared/user.service';
 
 @Component({
   selector: 'app-dashbord-layout',
@@ -14,4 +15,13 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 })
 export class DashbordLayoutComponent {
   isCollapsed = false;
+  user:any
+  constructor(private userService:UserService,private router:Router){
+    this.user=this.userService.currentUser
+  }
+
+  logout(){
+    localStorage.clear();
+    this.router.navigate(['/login'])
+  }
 }

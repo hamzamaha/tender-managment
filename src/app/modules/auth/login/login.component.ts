@@ -20,7 +20,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent  {
   isRegistering = false;
 
   constructor(
@@ -28,7 +28,9 @@ export class LoginComponent {
     private http: HttpClient,
     private router: Router,
     private userService: UserService
-  ) {}
+  ) {
+    localStorage.clear()
+  }
 
   validateLoginForm: FormGroup<{
     userName: FormControl<string>;
@@ -46,8 +48,8 @@ export class LoginComponent {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
     confirmPassword: ['', [Validators.required]],
-    avatar: ['', [Validators.required]],
-    phoneNumber: ['', [Validators.required]],
+    avatar: ['', []],
+    phoneNumber: ['', []],
     companyName: [''],
     companyAddress: [''],
     companyRole: [''],

@@ -3,8 +3,8 @@
 flex-direction: column;
 gap: 10px;">
   <div class="badge">Ongoing tenders</div>
-  <div class="content">
-    <h3 class="title">Achat de Test chez Test</h3>
+  <div class="content" [routerLink]="['/home',tender.id]"  >
+    <h3 class="title">{{tender.title}}</h3>
     <div class="details">
       <!-- <div class="location">
         <span class="flag">🇲🇦</span>
@@ -17,7 +17,7 @@ gap: 10px;">
     </div>
   </div>
 </div>
-  <div class="arrow">
+  <div class="arrow" [routerLink]="['/home',tender.id]">
     <span nz-icon nzType="caret-right" nzTheme="outline"></span>
   </div>
 </div>

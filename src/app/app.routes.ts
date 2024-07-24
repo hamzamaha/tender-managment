@@ -8,6 +8,7 @@ import { CardComponent } from './shared/components/card/card.component';
 import { UserLoginComponent } from './modules/auth/user-login/user-login.component';
 import { OffersComponent } from './modules/back-office/offers/offers.component';
 import { DtiViewComponent } from './modules/back-office/dti-view/dti-view.component';
+import { DetailsPageComponent } from './modules/landing-page/details-page/details-page.component';
 
 export const routes: Routes = [
   {
@@ -24,6 +25,7 @@ export const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: '', component: HomePageComponent ,},
+      { path: ':id', component: DetailsPageComponent,},
       { path: 'offers', component: MyOffresComponent ,},
     ]
 

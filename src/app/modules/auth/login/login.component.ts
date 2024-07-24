@@ -22,6 +22,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 })
 export class LoginComponent  {
   isRegistering = false;
+  showPassword = false;
 
   constructor(
     private fb: NonNullableFormBuilder,

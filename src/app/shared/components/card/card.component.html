@@ -1,23 +1,22 @@
-<div class="card">
-<div style="    display: flex;
+<div class="card" [routerLink]="['/home',tender.id]">
+<div    style="    display: flex;
 flex-direction: column;
 gap: 10px;">
   <div class="badge">Ongoing tenders</div>
-  <div class="content" [routerLink]="['/home',tender.id]"  >
+  <div class="content"  >
     <h3 class="title">{{tender.title}}</h3>
     <div class="details">
-      <!-- <div class="location">
-        <span class="flag">🇲🇦</span>
-        <span>Morocco</span>
-      </div> -->
       <div class="remaining-time">
-        <span class="time">remaining time</span>
+        <span class="time" style="font-size: medium;">remaining time</span>
         <span class="date">08/01/2024</span>
+      </div>
+      <div>
+        <img src="assets/image-maroc.png" alt="" style="    width: 110px;">
       </div>
     </div>
   </div>
 </div>
-  <div class="arrow" [routerLink]="['/home',tender.id]">
+  <div class="arrow">
     <span nz-icon nzType="caret-right" nzTheme="outline"></span>
   </div>
 </div>

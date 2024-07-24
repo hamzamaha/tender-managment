@@ -1,9 +1,14 @@
 .logo {
   width: 120px;
   height: 31px;
-  background: rgba(255, 255, 255, 0.2);
+  background: transparent;
   margin: 16px 24px 16px 0;
   float: left;
+  display: flex;
+  align-items: center;
+  color: ghostwhite;
+  font-weight: bolder;
+
 }
 
 [nz-menu] {

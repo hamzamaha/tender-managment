@@ -34,6 +34,7 @@
         <th nzColumnKey="estimatedAmount" [nzSortFn]="true">Estimated Amount</th>
         <th nzColumnKey="location" [nzSortFn]="true">Location</th>
         <th nzColumnKey="sector" [nzSortFn]="true">Sector</th>
+        <th nzColumnKey="sector" [nzSortFn]="true">status</th>
       </tr>
     </thead>
     <tbody>
@@ -44,6 +45,7 @@
         <td>{{ tender.estimatedAmount }}</td>
         <td>{{ tender.location }}</td>
         <td>{{ tender.sector }}</td>
+        <td>{{ tender.status }}</td>
       </tr>
     </tbody>
   </nz-table>

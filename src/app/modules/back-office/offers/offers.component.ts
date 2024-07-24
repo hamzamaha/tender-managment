@@ -4,6 +4,8 @@ import { NzTableModule, NzTableQueryParams } from 'ng-zorro-antd/table';
 import { SaveTenderModalComponent } from '../save-tender-modal/save-tender-modal.component';
 import { TenderService } from '../tender.service';
 import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
+import { TenderServiceService } from '../../../shared/tender-service.service';
+import { UserService } from '../../../shared/user.service';
 @Component({
   selector: 'app-offers',
   standalone: true,
@@ -22,7 +24,9 @@ export class OffersComponent implements OnInit {
 
   constructor(
     private tenderService: TenderService,
-    private modalService: NzModalService
+    private tendersService: TenderServiceService,
+    private modalService: NzModalService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -37,18 +41,18 @@ export class OffersComponent implements OnInit {
     this.loading = true;
     const criteria: any = {}; // Add criteria if needed
 
-    this.tenderService.getAllTenders(
-      params.pageIndex - 1,
-      params.pageSize,
-      params.sort[0].key,
-      params.sort[0].value === 'ascend' ? 'ASC' : 'DESC',
-      criteria
+    this.tendersService.getTenders(
+      this.pageIndex - 1,
+      this.pageSize,
+      this.userService.currentUser.company.id
     ).subscribe((response: any) => {
       this.loading = false;
       this.tenders = response.content;
       this.total = response.totalElements;
     });
   }
+
+
 
   onQueryParamsChange(params: any): void {
     this.pageIndex = params.pageIndex;

@@ -9,11 +9,12 @@ import { UserLoginComponent } from './modules/auth/user-login/user-login.compone
 import { OffersComponent } from './modules/back-office/offers/offers.component';
 import { DtiViewComponent } from './modules/back-office/dti-view/dti-view.component';
 import { DetailsPageComponent } from './modules/landing-page/details-page/details-page.component';
+import { authGuard } from './core/auth.guard';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
@@ -25,8 +26,8 @@ export const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: '', component: HomePageComponent ,},
-      { path: ':id', component: DetailsPageComponent,},
-      { path: 'offers', component: MyOffresComponent ,},
+      { path: ':id', component: DetailsPageComponent, canActivate:[authGuard]},
+      // { path: 'offers', component: MyOffresComponent ,},
     ]
 
   },

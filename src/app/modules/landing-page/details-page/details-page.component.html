@@ -1,8 +1,83 @@
-<div style="width: 80%; margin: auto; border-radius: 10px; padding-inline: 10px;">
-    <div style="background-color: rgb(65, 73, 77);">
-      marche en cours
+<div style="    width: 80%;
+margin: auto;
+border-radius: 10px;
+padding-inline: 35px;
+background: white;
+padding-block: 10px;
+height: calc(100vh - 200px);
+margin-bottom: 10px; ">
+    <div style="background: #88D6B3;
+    padding: 10px;
+    border-radius: 10px; color: white; font-weight: 500; margin-bottom: 10px;">
+    <span>marche en cours</span>
     </div>
+    <button nz-button nzType="primary" (click)="showModal()" style="margin-left: 54%;">
+      Open Purchase Request Form
+    </button>
     <div>
-
+      <div class="header" style="display: flex;
+      justify-content: space-between;
+      align-items: center;">
+        <h3>title aeae ae za az a</h3>
+        <img src="assets/image-maroc.png" alt="" style="    width: 120px;">
+        <span> Temps restant : </span>
+      </div>
+      <div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia soluta delectus illum exercitationem esse sapiente totam blanditiis quia, explicabo earum labore aut ad. Aut dignissimos perferendis blanditiis molestiae sint repellat!
+        </p>
+      </div>
+      <div>
+        cautionPercentage
+      </div>
     </div>
+<!-- purchase-request.component.html -->
+
+
+<nz-modal
+  [(nzVisible)]="isModalVisible"
+  nzTitle="Submit Purchase Request"
+  (nzOnCancel)="handleCancel()"
+  [nzFooter]="null"
+>
+<ng-container *nzModalContent>
+
+
+  <form nz-form (ngSubmit)="submitForm()">
+    <nz-form-item>
+      <nz-form-label>CPS</nz-form-label>
+      <nz-form-control>
+        <input type="file" (change)="handleFileUpload($event, 'CPS')" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label>RC</nz-form-label>
+      <nz-form-control>
+        <input type="file" (change)="handleFileUpload($event, 'RC')" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label>DA</nz-form-label>
+      <nz-form-control>
+        <input type="file" (change)="handleFileUpload($event, 'DA')" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label>Estimation</nz-form-label>
+      <nz-form-control>
+        <input nz-input [(ngModel)]="purchaseRequest.estimation" name="estimation" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button nzType="primary" type="submit">Submit</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</ng-container>
+</nz-modal>
 </div>

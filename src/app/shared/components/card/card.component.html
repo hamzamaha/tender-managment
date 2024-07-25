@@ -2,13 +2,19 @@
 <div    style="    display: flex;
 flex-direction: column;
 gap: 10px;">
-  <div class="badge">Ongoing tenders</div>
+
+  @if (tender.remainingTime.daysRemaining==0) {
+
+    <div class="badges">Done tenders</div>
+  }@else {
+    <div class="badge">Ongoing tenders</div>
+  }
   <div class="content"  >
     <h3 class="title">{{tender.title}}</h3>
     <div class="details">
       <div class="remaining-time">
         <span class="time" style="font-size: medium;">remaining time</span>
-        <span class="date">08/01/2024</span>
+        <span class="date">{{tender.remainingTime.daysRemaining }} Days  {{tender.remainingTime.hoursRemaining }} Hours</span>
       </div>
       <div>
         <img src="assets/image-maroc.png" alt="" style="    width: 110px;">

@@ -2,8 +2,20 @@
 <div class="tender-container">
 
   <div style="    display: flex;
-  justify-content: flex-end;
+      justify-content: space-between;
   padding: 10px;">
+      <nz-select
+      nzShowSearch
+      nzAllowClear
+      nzPlaceHolder="Select a status"
+      [(ngModel)]="status"
+      (ngModelChange)="onStatusChange()"
+      style="width: 300px; display: flex; align-items: center;">
+      <nz-option nzLabel="PENDING" nzValue="PENDING"></nz-option>
+      <nz-option nzLabel="ACCEPTED" nzValue="ACCEPTED"></nz-option>
+      <nz-option nzLabel="REJECTED" nzValue="REJECTED"></nz-option>
+      <nz-option nzLabel="EXPIRED" nzValue="EXPIRED"></nz-option>
+    </nz-select>
     <button nz-button nzType="primary" (click)="showSaveTenderModal()" style="    background: #001529;
     color: white;
     padding: 10px;
@@ -38,14 +50,19 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let tender of tenderTable.data">
+      <tr *ngFor="let tender of tenderTable.data" [routerLink]="['/dashboard',tender.id]">
         <td>{{ tender.title }}</td>
         <td>{{ tender.description }}</td>
         <td>{{ tender.budgetType }}</td>
         <td>{{ tender.estimatedAmount }}</td>
         <td>{{ tender.location }}</td>
         <td>{{ tender.sector }}</td>
-        <td>{{ tender.status }}</td>
+        <td [ngClass]="{
+          'status-pending': tender.status === 'PENDING',
+          'status-accepted': tender.status === 'ACCEPTED',
+          'status-rejected': tender.status === 'REJECTED',
+          'status-expired': tender.status === 'EXPIRED'
+        }">{{ tender.status }}</td>
       </tr>
     </tbody>
   </nz-table>

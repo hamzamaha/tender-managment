@@ -8,19 +8,21 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { CardComponent } from '../../../shared/components/card/card.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-my-offres',
+  selector: 'app-offresadmin',
   standalone: true,
   imports: [CommonModule,
     NzTagModule,FormsModule,NzCheckboxModule,
     NzSelectModule,NzFormModule,NzInputModule,CardComponent],
-  templateUrl: './my-offres.component.html',
-  styleUrl: './my-offres.component.css'
+  templateUrl: './offresadmin.component.html',
+  styleUrl: './offresadmin.component.css'
 })
-export class MyOffresComponent implements OnInit {
+export class OffresadminComponent implements OnInit {
 
   tenders: any[] = [];
+  tenderId:any;
   page: number = 0;
   totalPages: number = 1;
   loading: boolean = false;
@@ -28,7 +30,9 @@ export class MyOffresComponent implements OnInit {
     status: "PENDING"
   };
 
-    constructor(private sharedServiceService:SharedServiceService) {}
+    constructor(private sharedServiceService:SharedServiceService,private route: ActivatedRoute,) {
+      this.tenderId = this.route.snapshot.paramMap.get('id');
+    }
 
     ngOnInit() {
       this.loadData();
@@ -43,7 +47,7 @@ export class MyOffresComponent implements OnInit {
     if (this.loading) return;
     this.loading = true;
 
-    this.sharedServiceService.getTenders2(this.page, 10, this.payload).subscribe(
+    this.sharedServiceService.getTenders3(this.page, 10, this.payload,this.tenderId).subscribe(
       (      data: { content: any; totalPages: number; }) => {
         this.tenders = [...this.tenders, ...data.content];
         this.totalPages = data.totalPages;

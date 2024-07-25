@@ -6,14 +6,18 @@ import { TenderService } from '../tender.service';
 import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
 import { TenderServiceService } from '../../../shared/tender-service.service';
 import { UserService } from '../../../shared/user.service';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-offers',
   standalone: true,
-  imports: [NzTableModule , CommonModule ,NzModalModule],
+  imports: [NzTableModule , CommonModule ,NzModalModule,NzSelectModule ,FormsModule,RouterModule],
   templateUrl: './offers.component.html',
   styleUrl: './offers.component.css'
 })
 export class OffersComponent implements OnInit {
+  status:any="PENDING"
   tenders: any[] = [];
   total = 0;
   loading = true;
@@ -33,18 +37,24 @@ export class OffersComponent implements OnInit {
     this.loadTenders();
   }
 
+  onStatusChange(): void {
+    this.loadTenders();
+  }
+
   loadTenders(params: any = {
     pageIndex: this.pageIndex,
     pageSize: this.pageSize,
     sort: [{ key: this.sortField, value: this.sortOrder }]
   }): void {
+    const status = '';
     this.loading = true;
     const criteria: any = {}; // Add criteria if needed
 
     this.tendersService.getTenders(
       this.pageIndex - 1,
       this.pageSize,
-      this.userService.currentUser.company.id
+      this.userService.currentUser.company.id,
+      {status:this.status},
     ).subscribe((response: any) => {
       this.loading = false;
       this.tenders = response.content;

@@ -11,13 +11,13 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-dti-view',
+  selector: 'app-offers-expired',
   standalone: true,
-  imports: [NzSelectModule, CommonModule,NzModalModule,NzMessageModule,NzTableModule , FormsModule ,RouterModule],
-  templateUrl: './dti-view.component.html',
-  styleUrl: './dti-view.component.css'
+  imports: [NzSelectModule, CommonModule,NzModalModule,NzMessageModule,NzTableModule , FormsModule,RouterModule],
+  templateUrl: './offers-expired.component.html',
+  styleUrl: './offers-expired.component.css'
 })
-export class DtiViewComponent implements OnInit {
+export class OffersExpiredComponent implements OnInit {
   tenders: any[] = [];
   loading = false;
   pageIndex = 1;
@@ -39,7 +39,7 @@ export class DtiViewComponent implements OnInit {
   }
 
   loadTenders(): void {
-    const status = 'PENDING';
+   const status = 'EXPIRED';
     this.loading = true;
     this.tenderService.getTenders(
       this.pageIndex - 1,
@@ -127,3 +127,4 @@ export class DtiViewComponent implements OnInit {
     );
   }
 }
+

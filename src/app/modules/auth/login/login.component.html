@@ -33,7 +33,7 @@
       <nz-form-item>
         <nz-form-control>
           <nz-radio-group formControlName="userType">
-            <label nz-radio nzValue="User" (click)="changeUserType('User')">Utilisateur</label>
+            <label nz-radio nzValue="User" (click)="changeUserType('User')">Entreprise</label>
             <label nz-radio nzValue="DTI" (click)="changeUserType('DTI')">DTI</label>
             <label nz-radio nzValue="CDP" (click)="changeUserType('CDP')">CDP</label>
           </nz-radio-group>
@@ -94,9 +94,9 @@
         </nz-col>
         <nz-col nzSpan="12">
           <nz-form-item>
-            <nz-form-control nzErrorTip="Veuillez sélectionner un avatar!">
-              <nz-input-group nzPrefixIcon="smile">
-                <input type="text" nz-input formControlName="avatar" placeholder="Avatar" />
+            <nz-form-control nzErrorTip="Veuillez sélectionner un pays!">
+              <nz-input-group nzPrefixIcon="flag">
+                <input type="text" nz-input formControlName="avatar" placeholder="pays" />
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>

@@ -10,6 +10,10 @@ import { OffersComponent } from './modules/back-office/offers/offers.component';
 import { DtiViewComponent } from './modules/back-office/dti-view/dti-view.component';
 import { DetailsPageComponent } from './modules/landing-page/details-page/details-page.component';
 import { authGuard } from './core/auth.guard';
+import { OffersExpiredComponent } from './modules/back-office/offers-expired/offers-expired.component';
+import { OffersAcceptedComponent } from './modules/back-office/offers-accepted/offers-accepted.component';
+import { OffersDeclineComponent } from './modules/back-office/offers-decline/offers-decline.component';
+import { OffresadminComponent } from './modules/back-office/offresadmin/offresadmin.component';
 
 export const routes: Routes = [
   {
@@ -26,8 +30,8 @@ export const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: '', component: HomePageComponent ,},
+      { path: 'offers', component: MyOffresComponent , canActivate:[authGuard]},
       { path: ':id', component: DetailsPageComponent, canActivate:[authGuard]},
-      // { path: 'offers', component: MyOffresComponent ,},
     ]
 
   },
@@ -40,8 +44,11 @@ export const routes: Routes = [
     component: DashbordLayoutComponent,
     children: [
       { path: '', component: OffersComponent ,},
-      { path: 'dti', component: DtiViewComponent ,},
-      // { path: 'offers', component: MyOffresComponent ,},
+      { path: 'all', component: DtiViewComponent ,},
+      { path: 'accepted', component: OffersAcceptedComponent ,},
+      { path: 'decline', component: OffersDeclineComponent ,},
+      { path: 'expired', component: OffersExpiredComponent ,},
+      { path: ':id', component: OffresadminComponent ,},
     ]
 
   },

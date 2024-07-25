@@ -19,6 +19,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 export class DetailsPageComponent  implements OnInit {
   tenderId!: any;
   isModalVisible = false;
+  data:any
 
   purchaseRequest:any = {
     id: '',
@@ -37,6 +38,7 @@ export class DetailsPageComponent  implements OnInit {
 
   ngOnInit() {
     this.tenderId = this.route.snapshot.paramMap.get('id');
+    this.getTenderId()
 
   }
 
@@ -47,7 +49,14 @@ export class DetailsPageComponent  implements OnInit {
   handleCancel() {
     this.isModalVisible = false;
   }
-  // getByID()
+
+  getTenderId() {
+    this.http.get('http://localhost:8200/api/tender/'+this.tenderId).subscribe({
+      next: (response: any) => {
+          this.data = response
+      }
+    })
+  }
 
   async handleFileUpload(event: any, field: string) {
     const file = event.target.files[0];

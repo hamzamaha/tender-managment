@@ -15,11 +15,11 @@
       <th nzColumnKey="title" [nzSortFn]="true">Title</th>
       <th nzColumnKey="status" [nzSortFn]="true">Status</th>
 
-      <th>Actions</th>
+      <!-- <th>Actions</th> -->
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let tender of tenderTable.data" [routerLink]="['/dashboard',tender.id]" >
+    <tr *ngFor="let tender of tenderTable.data" [routerLink]="['/dashboard',tender.id]">
       <td>{{ tender.id }}</td>
       <td>{{ tender.title }}</td>
       <td [ngClass]="{
@@ -29,7 +29,7 @@
         'status-expired': tender.status === 'EXPIRED'
       }">{{ tender.status }}</td>
 
-      <td>
+      <!-- <td>
         <button style="background: cadetblue;
     border: none; margin-right: 10px; cursor: pointer; color: white;" nz-button nzType="primary" (click)="updateStatus(tender, 'ACCEPTED', acceptTpl)" [disabled]="tender.status === 'ACCEPTED'">
           Approve
@@ -37,7 +37,7 @@
         <button style="    background: brown; border: none; margin-right: 10px; cursor: pointer; color: white;" nz-button nzType="danger" (click)="updateStatus(tender, 'REJECTED', rejectTpl)" [disabled]="tender.status === 'REJECTED'">
           Reject
         </button>
-      </td>
+      </td> -->
     </tr>
   </tbody>
 </nz-table>

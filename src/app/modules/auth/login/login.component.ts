@@ -76,7 +76,7 @@ export class LoginComponent  {
           this.userService.getCurrentUser().subscribe({
             next: (res) => {
               if (res.role=='DTI') {
-                this.router.navigate(['/dashboard/dti']);
+                this.router.navigate(['/dashboard/all']);
               }else if (res.role=="CDP"){
                 this.router.navigate(['/dashboard']);
               }

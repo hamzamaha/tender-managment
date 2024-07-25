@@ -11,12 +11,12 @@ export class TenderServiceService {
 
   constructor(private http: HttpClient) {}
 
-  getTenders(page: number, pageSize: number,id:any): Observable<any> {
+  getTenders(page: number, pageSize: number,id:any,payload:any ={}): Observable<any> {
     const params = new HttpParams()
       .set('pageNo', page.toString())
       .set('pageSize', pageSize.toString())
 
-    return this.http.post(`${this.apiUrl}/all/${id}`, { params });
+    return this.http.post(`${this.apiUrl}/all/${id}`,payload, { params });
   }
 
   updateStatus(request: any): Observable<any> {

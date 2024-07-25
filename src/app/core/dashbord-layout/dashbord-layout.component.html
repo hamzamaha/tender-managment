@@ -1,27 +1,52 @@
 <nz-layout style="height: 100%;">
   <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
     <div class="logo">e-marchespublics</div>
-    <ul nz-menu nzTheme="dark" nzMode="inline">
+    <ul nz-menu nzTheme="dark" nzMode="inline" style="    margin-top: 95px;">
       @if (user.role=='CDP') {
-        <li nz-menu-item>
+        <li nz-menu-item [routerLink]="['/dashboard']" routerLinkActive="ant-menu-item-selected"
+        [routerLinkActiveOptions]={exact:true}>
           <span>Create offre</span>
         </li>
       }
+      @if (user.role=='DTI') {
+        <li nz-menu-item [routerLink]="['/dashboard/all']" routerLinkActive="ant-menu-item-selected"
+        [routerLinkActiveOptions]={exact:true}>
+          <span> les offers en cours</span>
+        </li>
+        <li nz-menu-item [routerLink]="['/dashboard/accepted']" routerLinkActive="ant-menu-item-selected"
+        [routerLinkActiveOptions]={exact:true}>
+          <span>offers accepter</span>
+        </li>
+        <li nz-menu-item [routerLink]="['/dashboard/decline']" routerLinkActive="ant-menu-item-selected"
+        [routerLinkActiveOptions]={exact:true}>
+          <span>offers refusé</span>
+        </li>
+        <li nz-menu-item [routerLink]="['/dashboard/expired']" routerLinkActive="ant-menu-item-selected"
+        [routerLinkActiveOptions]={exact:true}>
+          <span>offers expiré</span>
+        </li>
+        <li nz-menu-item  (click)="copyToClipboard(user.company.id)">
+          <span> copier ID company <span nz-icon nzType="copy" nzTheme="outline"></span> </span>
+        </li>
+      }
 
-      <li nz-menu-item>
-        <span>offers</span>
-      </li>
     </ul>
   </nz-sider>
   <nz-layout>
     <nz-header>
-      <span
+      <!-- <span
         class="trigger"
         nz-icon
         [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
         (click)="isCollapsed = !isCollapsed"
+      ></span> -->
+      <span
+        class="trigger"
+        nz-icon
+        [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+
       ></span>
-      <span (click)="logout()" style="    margin-left: 80%;">LogOut</span>
+      <span  (click)="logout()" style="margin-left: 80%; cursor: pointer;"><span nz-icon nzType="logout" nzTheme="outline"></span> logout</span>
     </nz-header>
     <nz-content>
       <router-outlet></router-outlet>

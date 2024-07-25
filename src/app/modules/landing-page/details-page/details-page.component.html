@@ -11,24 +11,41 @@ margin-bottom: 10px; ">
     border-radius: 10px; color: white; font-weight: 500; margin-bottom: 10px;">
     <span>marche en cours</span>
     </div>
-    <button nz-button nzType="primary" (click)="showModal()" style="margin-left: 54%;">
-      Open Purchase Request Form
-    </button>
+    <div style="    display: flex;
+    justify-content: flex-end;">
+      <button style="    background: #001529;
+      color: white;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 10px;" nz-button nzType="primary" (click)="showModal()">
+        Open Purchase Request Form
+      </button>
+    </div>
+
     <div>
       <div class="header" style="display: flex;
       justify-content: space-between;
       align-items: center;">
-        <h3>title aeae ae za az a</h3>
+        <h3>{{data.title}}</h3>
+
         <img src="assets/image-maroc.png" alt="" style="    width: 120px;">
-        <span> Temps restant : </span>
+        <span> Temps restant : {{data.remainingTime.daysRemaining}} days {{data.remainingTime.hoursRemaining}}</span>
       </div>
       <div>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia soluta delectus illum exercitationem esse sapiente totam blanditiis quia, explicabo earum labore aut ad. Aut dignissimos perferendis blanditiis molestiae sint repellat!
+          {{data.description}}
         </p>
       </div>
       <div>
-        cautionPercentage
+        <h3>sector : {{data.sector}}</h3>
+       <h3> caution Percentage : {{data.cautionPercentage}}%</h3>
+       <h3> estimated amount : {{data.estimatedAmount}}</h3>
+       <h3> budget Type : {{data.budgetType}}</h3>
+       <h3> operation : {{data.operation}}</h3>
+       <h3> situation : {{data.situation}}</h3>
+       <h3> prestation : {{data.prestation}}</h3>
       </div>
     </div>
 <!-- purchase-request.component.html -->

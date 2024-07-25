@@ -1,4 +1,7 @@
-<h1> my Offres</h1>
+<h1>
+  Offers
+</h1>
+
 <div class="right" (scroll)="onScroll($event)">
   @for (tender  of tenders; track $index) {
     <app-card [tender]="tender"></app-card>

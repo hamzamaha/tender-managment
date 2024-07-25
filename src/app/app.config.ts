@@ -13,6 +13,7 @@ import { authInterceptor } from './core/interceptors/auth.interceptor';
 import { InitService } from './shared/init.service';
 import { loadCurrentUserFactory } from './core/interceptors/initializer';
 import { UserService } from './shared/user.service';
+import { errorInterceptor } from './core/error.interceptor';
 
 
 
@@ -24,6 +25,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideNzI18n(fr_FR),
     provideHttpClient(withInterceptors([authInterceptor])),
+    provideHttpClient(withInterceptors([errorInterceptor])),
     importProvidersFrom(FormsModule),
     provideAnimationsAsync(),
     provideHttpClient(),
@@ -35,3 +37,7 @@ export const appConfig: ApplicationConfig = {
     },
   ],
 };
+function provideNzNotification(): import("@angular/core").Provider | import("@angular/core").EnvironmentProviders {
+  throw new Error('Function not implemented.');
+}
+

@@ -23,6 +23,15 @@
   font-weight: bold;
   width: fit-content;
 }
+.badges {
+  background-color: #d4f1d7;
+  color: #a84534;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  width: fit-content;
+}
 
 .content {
   flex: 1;

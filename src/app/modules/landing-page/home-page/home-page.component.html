@@ -2,8 +2,8 @@
 <div class="container">
   <div class="left">
     <div class="Sector">
-      <h3>Company Sector</h3>
-      <div class="tags">
+      <h3 style="font-size: medium;margin-left: 59px;">Secteur de l'entreprise</h3>
+      <div class="tags" style=" margin-left: 18px;margin-top: 40px;">
         <nz-tag
           *ngFor="let sector of companySectors"
           [nzChecked]="sector.selected"
@@ -17,10 +17,10 @@
     <div style="display: flex;
     justify-content: space-around;">
       <button class="btn-secondary" (click)="clearAllFilters()">
-        clear all
+        Actualiser
       </button>
       <button class="btn-primary" (click)="showMatches()">
-        show Matches
+        Afficher
       </button>
     </div>
     <img src="assets/images/er.png" alt="">

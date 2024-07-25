@@ -11,22 +11,22 @@
       @if (user.role=='DTI') {
         <li nz-menu-item [routerLink]="['/dashboard/all']" routerLinkActive="ant-menu-item-selected"
         [routerLinkActiveOptions]={exact:true}>
-          <span> les offers en cours</span>
+          <span>Offers en cours</span>
         </li>
         <li nz-menu-item [routerLink]="['/dashboard/accepted']" routerLinkActive="ant-menu-item-selected"
         [routerLinkActiveOptions]={exact:true}>
-          <span>offers accepter</span>
+          <span>Offres acceptées</span>
         </li>
         <li nz-menu-item [routerLink]="['/dashboard/decline']" routerLinkActive="ant-menu-item-selected"
         [routerLinkActiveOptions]={exact:true}>
-          <span>offers refusé</span>
+          <span>Offres refusées</span>
         </li>
         <li nz-menu-item [routerLink]="['/dashboard/expired']" routerLinkActive="ant-menu-item-selected"
         [routerLinkActiveOptions]={exact:true}>
-          <span>offers expiré</span>
+          <span>Offres expirées</span>
         </li>
         <li nz-menu-item  (click)="copyToClipboard(user.company.id)">
-          <span> copier ID company <span nz-icon nzType="copy" nzTheme="outline"></span> </span>
+          <span> Copier l'ID de l'entreprise <span nz-icon nzType="copy" nzTheme="outline"></span> </span>
         </li>
       }
 
@@ -46,7 +46,7 @@
         [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
 
       ></span>
-      <span  (click)="logout()" style="margin-left: 80%; cursor: pointer;"><span nz-icon nzType="logout" nzTheme="outline"></span> logout</span>
+      <span  (click)="logout()" style="margin-left: 80%; cursor: pointer;"><span nz-icon nzType="logout" nzTheme="outline"></span> Déconnexion</span>
     </nz-header>
     <nz-content>
       <router-outlet></router-outlet>

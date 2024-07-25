@@ -1,3 +1,5 @@
+
+
 <div style="    width: 80%;
 margin: auto;
 border-radius: 10px;
@@ -8,52 +10,60 @@ height: calc(100vh - 200px);
 margin-bottom: 10px; ">
     <div style="background: #88D6B3;
     padding: 10px;
-    border-radius: 10px; color: white; font-weight: 500; margin-bottom: 10px;">
-    <span>marche en cours</span>
+    border-radius: 10px; color: white; font-weight: 500; margin-bottom: 10px;" >
+    <span style="   margin-left: 440px;
+    font-size: larger;"><span nz-icon nzType="book" nzTheme="outline"></span> Marché en cours</span>
     </div>
-    <div style="    display: flex;
-    justify-content: flex-end;">
-      <button style="    background: #001529;
-      color: white;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: none;
-      cursor: pointer;
-      border-radius: 10px;" nz-button nzType="primary" (click)="showModal()">
-        Open Purchase Request Form
-      </button>
-    </div>
+    
 
     <div>
       <div class="header" style="display: flex;
       justify-content: space-between;
       align-items: center;">
-        <h3>{{data.title}}</h3>
+        <h3 style="font-size: large;margin-top: 15px;">{{data.title}}</h3>
 
         <img src="assets/image-maroc.png" alt="" style="    width: 120px;">
-        <span> Temps restant : {{data.remainingTime.daysRemaining}} days {{data.remainingTime.hoursRemaining}}</span>
+        
       </div>
-      <div>
-        <p>
+      
+      <div style="margin-top: 15px;">
+        <p style="width: auto;font-size: 14px;">
           {{data.description}}
         </p>
       </div>
-      <div>
-        <h3>sector : {{data.sector}}</h3>
-       <h3> caution Percentage : {{data.cautionPercentage}}%</h3>
-       <h3> estimated amount : {{data.estimatedAmount}}</h3>
-       <h3> budget Type : {{data.budgetType}}</h3>
-       <h3> operation : {{data.operation}}</h3>
-       <h3> situation : {{data.situation}}</h3>
-       <h3> prestation : {{data.prestation}}</h3>
+      <div class="data-container">
+        <div class="first-row"style="margin-top:50px">
+          
+          <h3><span nz-icon nzType="field-time" nzTheme="outline"></span> Temps restant : <span class="green-text">{{data.remainingTime.daysRemaining}} Jours {{data.remainingTime.hoursRemaining}} Heurs</span></h3>
+          <h3><span nz-icon nzType="build" nzTheme="outline"></span> Secteur : <span class="green-text">{{data.sector}}</span></h3>
+          <h3><span nz-icon nzType="percentage" nzTheme="outline"> </span> Pourcentage de caution : <span class="green-text">{{data.cautionPercentage}}%</span></h3>
+          <h3> <span nz-icon nzType="dollar-circle" nzTheme="outline"></span> Montant estimé : <span class="green-text">{{data.estimatedAmount}}$</span></h3>
+        </div>
+        <div class="second-row">
+          <h3><span nz-icon nzType="code" nzTheme="outline"></span> Type de budget : <span class="green-text">{{data.budgetType}}</span></h3>
+          <h3><span nz-icon nzType="apartment" nzTheme="outline"></span> Opération : <span class="green-text">{{data.operation}}</span></h3>
+          <h3><span nz-icon nzType="book" nzTheme="outline"></span> Situation : <span class="green-text">{{data.situation}}</span></h3>
+          <h3><span nz-icon nzType="paper-clip" nzTheme="outline"></span> Prestation : <span class="green-text">{{data.prestation}}</span></h3>
+        </div>
       </div>
-    </div>
 <!-- purchase-request.component.html -->
+<div style="    display: flex;
+justify-content: flex-end;">
+  <button style="    background: #001529;
+  color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;margin-right: 428px;margin-top: 20px;" nz-button nzType="primary" (click)="showModal()">
+    <span style="font-size: large;">Postuler à cette offre</span>
+  </button>
+</div>
 
 
 <nz-modal
   [(nzVisible)]="isModalVisible"
-  nzTitle="Submit Purchase Request"
+  nzTitle="Soumettre une demande d'achat"
   (nzOnCancel)="handleCancel()"
   [nzFooter]="null"
 >
@@ -61,37 +71,81 @@ margin-bottom: 10px; ">
 
 
   <form nz-form (ngSubmit)="submitForm()">
-    <nz-form-item>
-      <nz-form-label>CPS</nz-form-label>
+    <!-- <nz-form-item>
+      <nz-form-label> CPS </nz-form-label>
       <nz-form-control>
         <input type="file" (change)="handleFileUpload($event, 'CPS')" />
       </nz-form-control>
-    </nz-form-item>
+    </nz-form-item> -->
+    
+    <div class="upload">
+      <div class="file">
+        <span>CPS :</span>
+        <button class="container-btn-file" (change)="handleFileUpload($event, 'CPS')">
+          <span style="margin-right: 10px;" nz-icon nzType="file" nzTheme="outline"></span>
+          Choisir un fichier
+          <input class="file" name="text" type="file" />
+        </button>
+      </div>
+  
+      <div class="file">
+        <span>RC :</span>
+        <button class="container-btn-file" (change)="handleFileUpload($event, 'RC')">
+          <span style="margin-right: 10px;" nz-icon nzType="file" nzTheme="outline"></span>
+          Choisir un fichier
+          <input class="file" name="text" type="file" />
+        </button>
+      </div>
+  
+      <div class="file">
+        <span>DA :</span>
+        <button class="container-btn-file" (change)="handleFileUpload($event, 'DA')">
+          <span style="margin-right: 10px;" nz-icon nzType="file" nzTheme="outline"></span>
+          Choisir un fichier
+          <input class="file" name="text" type="file" />
+        </button>
+      </div>
+  
+    </div>
 
-    <nz-form-item>
+    <!-- <nz-form-item>
       <nz-form-label>RC</nz-form-label>
       <nz-form-control>
         <input type="file" (change)="handleFileUpload($event, 'RC')" />
       </nz-form-control>
-    </nz-form-item>
+    </nz-form-item> -->
 
-    <nz-form-item>
+    <!-- <nz-form-item>
       <nz-form-label>DA</nz-form-label>
       <nz-form-control>
         <input type="file" (change)="handleFileUpload($event, 'DA')" />
       </nz-form-control>
-    </nz-form-item>
+    </nz-form-item> -->
 
     <nz-form-item>
-      <nz-form-label>Estimation</nz-form-label>
+      <nz-form-label style = "padding-top: 13px;">Estimation</nz-form-label>
       <nz-form-control>
-        <input nz-input [(ngModel)]="purchaseRequest.estimation" name="estimation" />
+        <!-- <input nz-input [(ngModel)]="purchaseRequest.estimation" name="estimation" />-->
+        <input [(ngModel)]="purchaseRequest.estimation" name="estimation" class="input" placeholder="Estimation" style="   margin-top: 7px;
+        width: 100%;
+        min-width: 100%;">
       </nz-form-control>
-    </nz-form-item>
+    </nz-form-item> 
+
 
     <nz-form-item>
       <nz-form-control>
-        <button nz-button nzType="primary" type="submit">Submit</button>
+        <button style="    background: #001529;
+        color: white;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 10px;margin-right: 428px;margin-top: 20px;margin-left: 193px;
+    padding-left: 20px;
+    padding-right: 20px;" nz-button nzType="primary" (click)="showModal()">
+          <span style="font-size: large;" type="submit">Postuler</span>
+        </button>
       </nz-form-control>
     </nz-form-item>
   </form>

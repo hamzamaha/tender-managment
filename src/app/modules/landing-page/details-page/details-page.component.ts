@@ -7,12 +7,13 @@ import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
 import { NzMessageModule, NzMessageService } from 'ng-zorro-antd/message';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 
 @Component({
   selector: 'app-details-page',
   standalone: true,
-  imports: [NzModalModule ,CommonModule,NzMessageModule,NzFormModule , FormsModule,NzInputModule],
+  imports: [NzModalModule ,CommonModule,NzMessageModule,NzFormModule , FormsModule,NzInputModule, NzIconModule],
   templateUrl: './details-page.component.html',
   styleUrl: './details-page.component.css'
 })

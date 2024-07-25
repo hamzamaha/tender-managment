@@ -5,9 +5,11 @@
     align-items: center;
     justify-content: center;">
       <li nz-menu-item [routerLink]="['/home']" routerLinkActive="ant-menu-item-selected"
-      [routerLinkActiveOptions]={exact:true}>Home</li>
+      [routerLinkActiveOptions]={exact:true}>Accueil</li>
       <li nz-menu-item [routerLink]="['/home/offers']" routerLinkActive="ant-menu-item-selected"
-      [routerLinkActiveOptions]={exact:true}>My offres</li>
+      [routerLinkActiveOptions]={exact:true}>Mes Offres</li>
+      <li nz-menu-item routerLinkActive="ant-menu-item-selected"
+      [routerLinkActiveOptions]={exact:true}>Contact Us</li>
     </ul>
     <div class="avatar-dropdown">
       <div style="cursor: pointer;" (click)="toggleDropdown()">
@@ -20,7 +22,7 @@
         </div>
         <div class="logout" (click)="logout()">
           <span nz-icon nzType="logout" nzTheme="outline"></span>
-          <span style="    margin-left: 10px;">Logout</span>
+          <span style="    margin-left: 10px;">Déconnexion</span>
         </div>
       </div>
     </div>

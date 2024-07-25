@@ -19,7 +19,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let tender of tenderTable.data" [routerLink]="['/dashboard',tender.id]" >
+    <tr *ngFor="let tender of tenderTable.data" >
       <td>{{ tender.id }}</td>
       <td>{{ tender.title }}</td>
       <td [ngClass]="{
@@ -50,19 +50,6 @@
 " nz-button nzType="danger" (click)="updateStatus(tender, 'REJECTED', rejectTpl)" [disabled]="tender.status === 'REJECTED'">
           <span style="color: rgb(210, 67, 67);">❌</span> Refuser
         </button>
-<!-- 
-        <button style="    background: #001529;
-        color: white;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: none;
-        cursor: pointer;
-        border-radius: 10px;margin-right: 428px;margin-top: 20px;margin-left: 193px;
-    padding-left: 20px;
-    padding-right: 20px;" nz-button nzType="primary">
-          <span style="font-size: large;" type="submit">Postuler</span>
-        </button> -->
-
       </td>
     </tr>
   </tbody>
@@ -71,7 +58,7 @@
 <ng-template #rejectTpl>
   <textarea nz-input
     [(ngModel)]="rejectComment"
-    placeholder="Enter rejection reason">
+    placeholder="Enter rejection reason" [nzAutosize]="{ minRows: 2, maxRows: 6 }">
   </textarea>
 </ng-template>
 

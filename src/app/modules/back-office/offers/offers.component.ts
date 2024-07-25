@@ -9,10 +9,11 @@ import { UserService } from '../../../shared/user.service';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 @Component({
   selector: 'app-offers',
   standalone: true,
-  imports: [NzTableModule , CommonModule ,NzModalModule,NzSelectModule ,FormsModule,RouterModule],
+  imports: [NzTableModule , CommonModule ,NzModalModule,NzSelectModule ,FormsModule,RouterModule,NzIconModule],
   templateUrl: './offers.component.html',
   styleUrl: './offers.component.css'
 })
@@ -74,7 +75,7 @@ export class OffersComponent implements OnInit {
 
   showSaveTenderModal(): void {
     const modal = this.modalService.create({
-      nzTitle: 'Save Tender',
+      nzTitle: 'Enregistrer un offere',
       nzContent: SaveTenderModalComponent,
       nzFooter: null,
       nzWidth: 800

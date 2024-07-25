@@ -3,7 +3,7 @@
   display: flex;
     flex-direction: column;
     gap: 10px;
-    height: calc(100vh - 120px);
+    height: calc(100vh - 190px);
     overflow: hidden;
     scrollbar-gutter: stable both-edges;
 }

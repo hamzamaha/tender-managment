@@ -60,9 +60,13 @@
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="6" nzRequired>Image</nz-form-label>
+    <nz-form-label [nzSpan]="6" nzRequired>fichier</nz-form-label>
     <nz-form-control [nzSpan]="14" nzErrorTip="Image is required">
-      <input type="file" (change)="onFileSelected($event)" />
+      <button class="container-btn-file" (change)="onFileSelected($event)">
+        <span style="margin-right: 10px;" nz-icon nzType="file" nzTheme="outline"></span>
+        Choisir un fichier
+        <input class="file" name="text" type="file" />
+      </button>
     </nz-form-control>
   </nz-form-item>
 
@@ -76,7 +80,9 @@
   <nz-form-item>
     <nz-form-label [nzSpan]="6" nzRequired>Secteur</nz-form-label>
     <nz-form-control [nzSpan]="14" nzErrorTip="Sector is required">
-      <input nz-input formControlName="sector" />
+      <nz-select formControlName="sector">
+        <nz-option *ngFor="let sector of sectors" [nzValue]="sector.value" [nzLabel]="sector.label"></nz-option>
+      </nz-select>
     </nz-form-control>
   </nz-form-item>
 

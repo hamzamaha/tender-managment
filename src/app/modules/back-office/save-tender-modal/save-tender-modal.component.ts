@@ -17,6 +17,18 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 })
 export class SaveTenderModalComponent  {
   tenderForm: FormGroup;
+  sectors: {value: string, label: string}[] = [
+    { value: 'agriculture', label: 'Agriculture' },
+    { value: 'industrie', label: 'Industrie' },
+    { value: 'construction', label: 'Construction' },
+    { value: 'commerce', label: 'Commerce' },
+    { value: 'transport', label: 'Transport et logistique' },
+    { value: 'hotellerie_restauration', label: 'Hôtellerie et restauration' },
+    { value: 'information_communication', label: 'Information et communication' },
+    { value: 'finance_assurance', label: 'Finance et assurance' },
+    { value: 'immobilier', label: 'Immobilier' },
+    { value: 'services_entreprises', label: 'Services aux entreprises' }
+  ];
 
   constructor(
     private fb: FormBuilder,

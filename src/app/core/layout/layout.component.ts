@@ -20,7 +20,7 @@ export class LayoutComponent {
 
 
   isDropdownOpen = false;
-  userName = this.user.currentUser.fullName; // Replace with actual user name
+  userName = this.user?.currentUser?.fullName; // Replace with actual user name
 
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;

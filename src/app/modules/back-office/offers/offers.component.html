@@ -11,10 +11,10 @@
       [(ngModel)]="status"
       (ngModelChange)="onStatusChange()"
       style="width: 300px; display: flex; align-items: center;">
-      <nz-option nzLabel="PENDING" nzValue="PENDING"></nz-option>
-      <nz-option nzLabel="ACCEPTED" nzValue="ACCEPTED"></nz-option>
-      <nz-option nzLabel="REJECTED" nzValue="REJECTED"></nz-option>
-      <nz-option nzLabel="EXPIRED" nzValue="EXPIRED"></nz-option>
+      <nz-option nzLabel="EN COURS" nzValue="PENDING"></nz-option>
+      <nz-option nzLabel="ACCEPTÉ" nzValue="ACCEPTED"></nz-option>
+      <nz-option nzLabel="REJETÉE" nzValue="REJECTED"></nz-option>
+      <nz-option nzLabel="EXPIRÉ" nzValue="EXPIRED"></nz-option>
     </nz-select>
     <button nz-button nzType="primary" (click)="showSaveTenderModal()" style="    background: #001529;
     color: white;
@@ -47,10 +47,11 @@
         <th nzColumnKey="location" [nzSortFn]="true">Location</th>
         <th nzColumnKey="sector" [nzSortFn]="true">Secteur</th>
         <th nzColumnKey="sector" [nzSortFn]="true">status</th>
+        <th nzColumnKey=""></th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let tender of tenderTable.data" [routerLink]="['/dashboard',tender.id]">
+      <tr *ngFor="let tender of tenderTable.data" >
         <td>{{ tender.title }}</td>
         <td>{{ tender.description }}</td>
         <td>{{ tender.budgetType }}</td>
@@ -63,6 +64,12 @@
           'status-rejected': tender.status === 'REJECTED',
           'status-expired': tender.status === 'EXPIRED'
         }">{{ tender.status }}</td>
+
+        <td *ngIf="tender.status=='ACCEPTED'">
+          <button style="    background: transparent;
+          border: none;
+          cursor: pointer" [routerLink]="['/dashboard',tender.id]"><span nz-icon nzType="arrow-right" nzTheme="outline"></span></button>
+        </td>
       </tr>
     </tbody>
   </nz-table>

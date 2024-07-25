@@ -10,22 +10,24 @@ height: calc(100vh - 200px);
 margin-bottom: 10px; ">
     <div style="background: #88D6B3;
     padding: 10px;
-    border-radius: 10px; color: white; font-weight: 500; margin-bottom: 10px;" >
-    <span style="   margin-left: 440px;
+    border-radius: 10px; color: white; font-weight: 500; margin-bottom: 10px;     display: flex;
+    align-items: center;
+    justify-content: center;" >
+    <span style="
     font-size: larger;"><span nz-icon nzType="book" nzTheme="outline"></span> Marché en cours</span>
     </div>
-    
+
 
     <div>
       <div class="header" style="display: flex;
       justify-content: space-between;
       align-items: center;">
-        <h3 style="font-size: large;margin-top: 15px;">{{data.title}}</h3>
+        <h3 style="font-size: large;margin-top: 15px;">{{data?.title}}</h3>
 
         <img src="assets/image-maroc.png" alt="" style="    width: 120px;">
-        
+
       </div>
-      
+
       <div style="margin-top: 15px;">
         <p style="width: auto;font-size: 14px;">
           {{data.description}}
@@ -33,7 +35,7 @@ margin-bottom: 10px; ">
       </div>
       <div class="data-container">
         <div class="first-row"style="margin-top:50px">
-          
+
           <h3><span nz-icon nzType="field-time" nzTheme="outline"></span> Temps restant : <span class="green-text">{{data.remainingTime.daysRemaining}} Jours {{data.remainingTime.hoursRemaining}} Heurs</span></h3>
           <h3><span nz-icon nzType="build" nzTheme="outline"></span> Secteur : <span class="green-text">{{data.sector}}</span></h3>
           <h3><span nz-icon nzType="percentage" nzTheme="outline"> </span> Pourcentage de caution : <span class="green-text">{{data.cautionPercentage}}%</span></h3>
@@ -48,14 +50,15 @@ margin-bottom: 10px; ">
       </div>
 <!-- purchase-request.component.html -->
 <div style="    display: flex;
-justify-content: flex-end;">
+justify-content: center;
+align-items: center;;">
   <button style="    background: #001529;
   color: white;
   padding: 10px;
   margin-bottom: 10px;
   border: none;
   cursor: pointer;
-  border-radius: 10px;margin-right: 428px;margin-top: 20px;" nz-button nzType="primary" (click)="showModal()">
+  border-radius: 10px;margin-top: 20px;" nz-button nzType="primary" (click)="showModal()">
     <span style="font-size: large;">Postuler à cette offre</span>
   </button>
 </div>
@@ -77,7 +80,7 @@ justify-content: flex-end;">
         <input type="file" (change)="handleFileUpload($event, 'CPS')" />
       </nz-form-control>
     </nz-form-item> -->
-    
+
     <div class="upload">
       <div class="file">
         <span>CPS :</span>
@@ -87,7 +90,7 @@ justify-content: flex-end;">
           <input class="file" name="text" type="file" />
         </button>
       </div>
-  
+
       <div class="file">
         <span>RC :</span>
         <button class="container-btn-file" (change)="handleFileUpload($event, 'RC')">
@@ -96,7 +99,7 @@ justify-content: flex-end;">
           <input class="file" name="text" type="file" />
         </button>
       </div>
-  
+
       <div class="file">
         <span>DA :</span>
         <button class="container-btn-file" (change)="handleFileUpload($event, 'DA')">
@@ -105,7 +108,7 @@ justify-content: flex-end;">
           <input class="file" name="text" type="file" />
         </button>
       </div>
-  
+
     </div>
 
     <!-- <nz-form-item>
@@ -130,7 +133,7 @@ justify-content: flex-end;">
         width: 100%;
         min-width: 100%;">
       </nz-form-control>
-    </nz-form-item> 
+    </nz-form-item>
 
 
     <nz-form-item>

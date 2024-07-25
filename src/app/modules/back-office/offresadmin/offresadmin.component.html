@@ -2,8 +2,49 @@
   Mes Offres
 </h1>
 
-<div class="right" (scroll)="onScroll($event)">
-  @for (tender  of tenders; track $index) {
-    <app-card [tender]="tender"></app-card>
-  }
-</div>
+<!-- offresadmin.component.html -->
+<nz-table
+  #basicTable
+  [nzData]="listOfData"
+  [nzLoading]="loading"
+  [nzTotal]="total"
+  [nzPageSize]="pageSize"
+  [nzPageIndex]="pageIndex"
+  (nzPageIndexChange)="onPageIndexChange($event)"
+  (nzPageSizeChange)="onPageSizeChange($event)"
+  [nzFrontPagination]="false"
+>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Email</th>
+      <th>Offre Titre</th>
+      <th>Status</th>
+      <th>Estimation</th>
+      <th>budget type</th>
+      <th>CPS</th>
+      <th>RC</th>
+      <th>DA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{ data.user.fullName }}</td>
+      <td>{{ data.user.email }}</td>
+      <td>{{ data.tender.title }}</td>
+      <td>{{ data.status }}</td>
+      <td>{{ data.estimation }}</td>
+      <td>{{ data.tender.budgetType }}</td>
+      <td>
+        <a (click)="downloadFile(data.cps)">Download CPS</a>
+      </td>
+      <td>
+        <a (click)="downloadFile(data.rc)">Download RC</a>
+      </td>
+      <td>
+        <a (click)="downloadFile(data.da)">Download DA</a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+

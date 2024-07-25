@@ -9,11 +9,12 @@ import { UserService } from '../../../shared/user.service';
 import { TenderServiceService } from '../../../shared/tender-service.service';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @Component({
   selector: 'app-offers-expired',
   standalone: true,
-  imports: [NzSelectModule, CommonModule,NzModalModule,NzMessageModule,NzTableModule , FormsModule,RouterModule],
+  imports: [NzSelectModule, CommonModule,NzModalModule,NzMessageModule,NzTableModule , FormsModule,RouterModule,NzIconModule],
   templateUrl: './offers-expired.component.html',
   styleUrl: './offers-expired.component.css'
 })

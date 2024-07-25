@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzFormModule } from 'ng-zorro-antd/form';
@@ -24,31 +24,35 @@ interface CompanySector {
 export class HomePageComponent implements OnInit {
 
   companySectors: CompanySector[] = [
-    { name: 'Manufacturing', selected: false },
-    { name: 'Management', selected: false },
-    { name: 'Construction', selected: false },
-    { name: 'Technology', selected: false },
-    { name: 'Retail', selected: false },
-    { name: 'Agriculture', selected: false },
-    { name: 'Tertiary sector of the economy', selected: false },
-    { name: 'Trade', selected: false },
-    { name: 'Industry', selected: false }
+    { name: 'agriculture', selected: false },
+    { name: 'industrie', selected: false },
+    { name: 'construction', selected: false },
+    { name: 'transport', selected: false },
+    { name: 'hotellerie_restauration', selected: false },
+    { name: 'information_communication', selected: false },
+    { name: 'finance_assurance', selected: false },
+    { name: 'immobilier', selected: false },
+    { name: 'services_entreprises', selected: false },
+    { name: 'commerce', selected: false },
   ];
   tenders: any[] = [];
   page: number = 0;
   totalPages: number = 1;
   loading: boolean = false;
-  payload = {
+  payload: any = {
     location: null,
     sectors: null,
     status: null
   };
 
-    constructor(private sharedServiceService:SharedServiceService) {}
+  constructor(
+    private sharedServiceService: SharedServiceService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
-    ngOnInit() {
-      this.loadData();
-    }
+  ngOnInit() {
+    this.loadData(this.payload);
+  }
 
   onTagChange(sector: CompanySector, checked: boolean) {
     sector.selected = checked;
@@ -59,41 +63,55 @@ export class HomePageComponent implements OnInit {
       .filter(sector => sector.selected)
       .map(sector => sector.name);
     console.log('Selected sectors:', selectedSectors);
+    this.payload.sectors = selectedSectors;
+    this.page = 0; // Reset page number
+    this.tenders = []; // Clear existing tenders
+    this.loadData(this.payload);
   }
 
   clearAllFilters() {
     // Clear company sectors
     this.companySectors.forEach(sector => sector.selected = false);
+    this.payload = {
+      location: null,
+      sectors: null,
+      status: null
+    };
+    this.page = 0;
+    this.tenders = [];
+    this.loadData(this.payload);
   }
 
-
-  loadData() {
+  loadData(payload: any) {
     if (this.loading) return;
     this.loading = true;
 
-    this.sharedServiceService.getTenders(this.page, 10, this.payload).subscribe(
+    this.sharedServiceService.getTenders(this.page, 5, payload).subscribe(
       data => {
-        this.tenders = [...this.tenders, ...data.content];
+        if (this.page === 0) {
+          this.tenders = data.content; // Replace tenders if it's the first page
+        } else {
+          this.tenders = [...this.tenders, ...data.content]; // Append for subsequent pages
+        }
         this.totalPages = data.totalPages;
         this.loading = false;
+        this.cdr.detectChanges(); // Trigger change detection
       },
       error => {
         console.error('Error fetching tenders', error);
         this.loading = false;
+        this.cdr.detectChanges(); // Trigger change detection
       }
     );
   }
 
-  // @HostListener('window:scroll', ['$event'])
   onScroll(event: any) {
-
     const element = event.target;
-
     const atBottom = element.scrollHeight - element.scrollTop <= element.clientHeight + 1;
 
     if (atBottom && !this.loading && this.page < this.totalPages - 1) {
       this.page++;
-      this.loadData();
+      this.loadData(this.payload);
     }
   }
 }

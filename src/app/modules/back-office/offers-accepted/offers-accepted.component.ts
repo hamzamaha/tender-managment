@@ -9,11 +9,12 @@ import { UserService } from '../../../shared/user.service';
 import { TenderServiceService } from '../../../shared/tender-service.service';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @Component({
   selector: 'app-offers-accepted',
   standalone: true,
-  imports: [NzSelectModule, CommonModule,NzModalModule,NzMessageModule,NzTableModule , FormsModule,RouterModule],
+  imports: [NzSelectModule, CommonModule,NzModalModule,NzMessageModule,NzTableModule , FormsModule,RouterModule,NzIconModule],
   templateUrl: './offers-accepted.component.html',
   styleUrl: './offers-accepted.component.css'
 })

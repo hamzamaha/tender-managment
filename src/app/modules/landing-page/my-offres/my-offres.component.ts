@@ -8,13 +8,14 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { CardComponent } from '../../../shared/components/card/card.component';
+import { CardOffreComponent } from "../../../shared/components/card-offre/card-offre.component";
 
 @Component({
   selector: 'app-my-offres',
   standalone: true,
   imports: [CommonModule,
-    NzTagModule,FormsModule,NzCheckboxModule,
-    NzSelectModule,NzFormModule,NzInputModule,CardComponent],
+    NzTagModule, FormsModule, NzCheckboxModule,
+    NzSelectModule, NzFormModule, NzInputModule, CardComponent, CardOffreComponent],
   templateUrl: './my-offres.component.html',
   styleUrl: './my-offres.component.css'
 })
@@ -25,7 +26,7 @@ export class MyOffresComponent implements OnInit {
   totalPages: number = 1;
   loading: boolean = false;
   payload = {
-    status: "PENDING"
+    status: null
   };
 
     constructor(private sharedServiceService:SharedServiceService) {}
